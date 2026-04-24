@@ -42,7 +42,7 @@ export default function Sidebar({ activePage, onNavigate, isOpen, onClose }) {
       {/* Mobile overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-surface-50/35 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+          className="fixed inset-0 bg-surface-50/30 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
           onClick={onClose}
         />
       )}
@@ -51,16 +51,20 @@ export default function Sidebar({ activePage, onNavigate, isOpen, onClose }) {
       <aside
         className={`
           fixed top-16 left-0 bottom-0 z-40
-          w-64 bg-white/80 backdrop-blur-xl border-r border-surface-700/70
+          w-64 backdrop-blur-2xl border-r
           transform transition-all duration-300 ease-in-out
           lg:translate-x-0 lg:static lg:w-60
-          ${isOpen ? 'translate-x-0 shadow-2xl shadow-primary-500/15' : '-translate-x-full'}
+          ${isOpen ? 'translate-x-0 shadow-2xl shadow-primary-500/10' : '-translate-x-full'}
         `}
+        style={{
+          background: 'rgba(251, 253, 255, 0.88)',
+          borderColor: 'rgba(164, 181, 205, 0.38)',
+        }}
       >
         <div className="flex flex-col h-full py-6">
           {/* Navigation Group */}
           <div className="px-4 mb-4">
-            <p className="text-[10px] font-bold text-surface-400 uppercase tracking-[0.2em] px-3 mb-4">
+            <p className="text-[10px] font-bold text-surface-500 uppercase tracking-[0.22em] px-3 mb-3">
               Main Menu
             </p>
             <nav className="space-y-1">
@@ -77,14 +81,14 @@ export default function Sidebar({ activePage, onNavigate, isOpen, onClose }) {
                       w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium
                       transition-all duration-300 group relative overflow-hidden
                       ${isActive
-                        ? 'bg-primary-500/12 text-primary-700 border border-primary-400/25'
-                        : 'text-surface-300 hover:text-surface-100 hover:bg-primary-500/8'
+                        ? 'bg-primary-500/10 text-primary-700 border border-primary-400/20'
+                        : 'text-surface-300 hover:text-surface-100 hover:bg-primary-500/6 border border-transparent'
                       }
                     `}
                   >
                     {/* Active Indicator Line */}
                     {isActive && (
-                      <div className="absolute left-0 top-3 bottom-3 w-0.5 bg-primary-500 rounded-full" />
+                      <div className="absolute left-0 top-2.5 bottom-2.5 w-[3px] bg-gradient-to-b from-primary-500 to-primary-400 rounded-full" />
                     )}
 
                     <span className={`transition-colors duration-300 ${isActive ? 'text-primary-600' : 'text-surface-400 group-hover:text-surface-200'}`}>
@@ -94,7 +98,7 @@ export default function Sidebar({ activePage, onNavigate, isOpen, onClose }) {
                     
                     {isActive && (
                       <div className="ml-auto">
-                        <div className="w-1 h-1 rounded-full bg-primary-400" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary-500 shadow-[0_0_6px_rgba(47,143,255,0.6)]" />
                       </div>
                     )}
                   </button>
@@ -107,13 +111,18 @@ export default function Sidebar({ activePage, onNavigate, isOpen, onClose }) {
           <div className="flex-1" />
 
           {/* Bottom Branding / Info */}
-          <div className="px-6">
-            <div className="p-4 rounded-2xl bg-gradient-to-br from-surface-900 to-white border border-surface-700/70 shadow-sm">
+          <div className="px-5">
+            <div className="p-4 rounded-2xl border"
+              style={{
+                background: 'linear-gradient(145deg, rgba(246, 248, 252, 0.9), rgba(237, 242, 248, 0.7))',
+                borderColor: 'rgba(164, 181, 205, 0.35)',
+              }}
+            >
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent-500 shadow-[0_0_8px_var(--color-accent-500)]" />
-                <span className="text-[10px] font-bold text-surface-400 uppercase tracking-widest">v1.0.4</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(14,168,155,0.6)] animate-pulse" />
+                <span className="text-[10px] font-bold text-surface-500 uppercase tracking-widest">v1.0.4</span>
               </div>
-              <p className="text-[11px] font-medium text-surface-300 leading-relaxed">
+              <p className="text-[11px] font-medium text-surface-400 leading-relaxed">
                 Platform Monitoring Tugas Mahasiswa <span className="text-primary-600 font-bold">Metlit</span>
               </p>
             </div>

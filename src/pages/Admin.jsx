@@ -59,10 +59,10 @@ export default function Admin({ students, onUpdateTask, onToggleStatus, onResetD
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div>
-            <h2 className="text-2xl font-black text-surface-100 tracking-tight">
-              Admin <span className="text-primary-600">Panel</span>
+            <h2 className="text-2xl sm:text-3xl font-black text-surface-100 tracking-tight">
+              Admin <span className="text-primary-gradient">Panel</span>
             </h2>
-            <p className="text-xs font-medium text-surface-400 mt-1 uppercase tracking-wider">Update status pengumpulan tugas per pertemuan</p>
+            <p className="text-[11px] font-medium text-surface-500 mt-1 uppercase tracking-wider">Update status pengumpulan tugas per pertemuan</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -71,12 +71,12 @@ export default function Admin({ students, onUpdateTask, onToggleStatus, onResetD
               <span className="w-2.5 h-2.5 rounded-full bg-success-500/20 border border-success-500/50 shadow-[0_0_8px_rgba(16,185,129,0.2)]"></span> Sudah
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-surface-700/50 border border-white/10"></span> Belum
+              <span className="w-2.5 h-2.5 rounded-full bg-surface-700/50 border border-surface-600/40"></span> Belum
             </span>
           </div>
           <button
             onClick={onLogout}
-            className="px-5 py-2.5 rounded-2xl text-[11px] font-bold text-danger-600 bg-danger-500/10 border border-danger-500/25 hover:bg-danger-500/20 transition-all duration-300 flex items-center gap-2 active:scale-95 uppercase tracking-widest"
+            className="px-4 py-2 rounded-2xl text-[11px] font-bold text-danger-600 bg-danger-500/10 border border-danger-500/20 hover:bg-danger-500/18 transition-all duration-300 flex items-center gap-2 active:scale-95 uppercase tracking-widest"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

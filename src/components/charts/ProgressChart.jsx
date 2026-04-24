@@ -49,22 +49,25 @@ export function StudentProgressChart({ students }) {
 
   return (
     <div className="glass rounded-2xl p-5">
-      <h3 className="text-sm font-semibold text-surface-200 mb-4">Progress per Mahasiswa</h3>
-      <div className="h-[300px]">
+      <div className="flex items-center gap-2 mb-4">
+        <div className="w-2 h-2 rounded-full bg-primary-500 shadow-[0_0_6px_rgba(47,143,255,0.5)]" />
+        <h3 className="text-sm font-semibold text-surface-200">Progress per Mahasiswa</h3>
+      </div>
+      <div className="h-[260px] sm:h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#d4dce8" />
+          <BarChart data={data} margin={{ top: 5, right: 10, left: -15, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(164,181,205,0.35)" />
             <XAxis
               dataKey="name"
-              tick={{ fill: '#4b5563', fontSize: 10 }}
+              tick={{ fill: '#6b7280', fontSize: 10 }}
               angle={-45}
               textAnchor="end"
               height={60}
             />
-            <YAxis tick={{ fill: '#4b5563', fontSize: 10 }} domain={[0, 100]} />
+            <YAxis tick={{ fill: '#6b7280', fontSize: 10 }} domain={[0, 100]} />
             <Tooltip content={<CustomBarTooltip />} />
-            <Bar dataKey="Progress" fill="#2f8fff" radius={[4, 4, 0, 0]} barSize={14} />
-            <Bar dataKey="Rata-rata" fill="#0ea89b" radius={[4, 4, 0, 0]} barSize={14} />
+            <Bar dataKey="Progress" fill="#2f8fff" radius={[5, 5, 0, 0]} barSize={12} />
+            <Bar dataKey="Rata-rata" fill="#0ea89b" radius={[5, 5, 0, 0]} barSize={12} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -77,16 +80,19 @@ export function ClusterPieChart({ students }) {
 
   return (
     <div className="glass rounded-2xl p-5">
-      <h3 className="text-sm font-semibold text-surface-200 mb-4">Distribusi Cluster</h3>
-      <div className="h-[300px]">
+      <div className="flex items-center gap-2 mb-4">
+        <div className="w-2 h-2 rounded-full bg-accent-500 shadow-[0_0_6px_rgba(14,168,155,0.5)]" />
+        <h3 className="text-sm font-semibold text-surface-200">Distribusi Cluster</h3>
+      </div>
+      <div className="h-[260px] sm:h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={distribution}
               cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={100}
+              cy="46%"
+              innerRadius={55}
+              outerRadius={90}
               paddingAngle={4}
               dataKey="count"
               nameKey="name"
@@ -97,8 +103,8 @@ export function ClusterPieChart({ students }) {
             </Pie>
             <Tooltip content={<CustomPieTooltip />} />
             <Legend
-              wrapperStyle={{ fontSize: '12px' }}
-              formatter={(value) => <span className="text-surface-300">{value}</span>}
+              wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }}
+              formatter={(value) => <span style={{ color: '#4b5563' }}>{value}</span>}
             />
           </PieChart>
         </ResponsiveContainer>

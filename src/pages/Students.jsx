@@ -66,36 +66,36 @@ export default function Students({ students, onUpdateTask, onDeleteStudent, onAd
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-in">
         <div>
-          <h2 className="text-3xl font-black text-surface-100 tracking-tight">
-            Data <span className="text-primary-600">Mahasiswa</span>
+          <h2 className="text-2xl sm:text-3xl font-black text-surface-100 tracking-tight">
+            Data <span className="text-primary-gradient">Mahasiswa</span>
           </h2>
-          <p className="text-xs font-bold text-surface-400 mt-1 uppercase tracking-[0.2em]">Monitoring pengumpulan tugas P1-P16 + Final</p>
+          <p className="text-[11px] font-bold text-surface-500 mt-1 uppercase tracking-[0.18em]">Monitoring pengumpulan tugas P1-P16 + Final</p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleExport}
-            className="px-3 py-2 rounded-xl text-xs font-semibold text-surface-300 bg-white/75 border border-surface-700/70 hover:bg-white hover:text-surface-200 transition-all"
+            className="px-3 py-2 rounded-xl text-xs font-semibold text-surface-300 bg-white/75 border border-surface-700/60 hover:bg-white hover:text-surface-200 transition-all"
             title="Export data ke JSON"
           >
             Export JSON
           </button>
           <button
             onClick={handleExportCSV}
-            className="px-3 py-2 rounded-xl text-xs font-semibold text-surface-300 bg-white/75 border border-surface-700/70 hover:bg-white hover:text-surface-200 transition-all"
+            className="px-3 py-2 rounded-xl text-xs font-semibold text-surface-300 bg-white/75 border border-surface-700/60 hover:bg-white hover:text-surface-200 transition-all"
             title="Export data ke CSV (Excel)"
           >
             Export CSV
           </button>
           <button
             onClick={handleReset}
-            className="px-3 py-2 rounded-xl text-xs font-semibold text-surface-300 bg-white/75 border border-surface-700/70 hover:bg-danger-500/12 hover:text-danger-600 hover:border-danger-500/30 transition-all"
+            className="px-3 py-2 rounded-xl text-xs font-semibold text-surface-300 bg-white/75 border border-surface-700/60 hover:bg-danger-500/10 hover:text-danger-600 hover:border-danger-500/25 transition-all"
             title="Reset ke data awal"
           >
             Reset Data
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-accent-500 shadow-lg shadow-primary-500/25 transition-all hover:-translate-y-0.5"
+            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-accent-500 shadow-lg shadow-primary-500/20 transition-all hover:-translate-y-0.5 active:scale-95"
           >
             + Tambah
           </button>
@@ -107,11 +107,13 @@ export default function Students({ students, onUpdateTask, onDeleteStudent, onAd
         <div className="w-full sm:w-64">
           <SearchBar value={searchTerm} onChange={setSearchTerm} />
         </div>
-        <FilterTabs
-          activeFilter={activeFilter}
-          onFilterChange={setActiveFilter}
-          counts={filterCounts}
-        />
+        <div className="overflow-x-auto w-full sm:w-auto">
+          <FilterTabs
+            activeFilter={activeFilter}
+            onFilterChange={setActiveFilter}
+            counts={filterCounts}
+          />
+        </div>
         <div className="sm:ml-auto">
           <ViewToggle activeView={viewMode} onViewChange={setViewMode} />
         </div>
@@ -120,7 +122,7 @@ export default function Students({ students, onUpdateTask, onDeleteStudent, onAd
       {/* Results info */}
       <div className="flex items-center justify-between">
         <p className="text-xs text-surface-400">
-          Menampilkan <span className="font-semibold text-surface-300">{filteredStudents.length}</span> dari {students.length} mahasiswa
+          Menampilkan <span className="font-semibold text-surface-300">{filteredStudents.length}</span> dari <span className="font-semibold text-surface-300">{students.length}</span> mahasiswa
         </p>
       </div>
 

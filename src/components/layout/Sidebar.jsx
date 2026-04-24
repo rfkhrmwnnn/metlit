@@ -29,103 +29,81 @@ const NAV_ITEMS = [
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
   },
 ];
 
-export default function Sidebar({ activePage, onNavigate, isOpen, onClose }) {
+export default function Sidebar({ activePage, onNavigate, isAdminAuth, onLogout }) {
   return (
     <>
-      {/* Mobile overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-surface-50/30 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
-          onClick={onClose}
-        />
-      )}
-
-      {/* Sidebar */}
+      {/* Desktop sidebar — hidden on mobile (BottomNav handles mobile) */}
       <aside
-        className={`
-          fixed top-16 left-0 bottom-0 z-40
-          w-64 backdrop-blur-2xl border-r
-          transform transition-all duration-300 ease-in-out
-          lg:translate-x-0 lg:static lg:w-60
-          ${isOpen ? 'translate-x-0 shadow-2xl shadow-primary-500/10' : '-translate-x-full'}
-        `}
+        className="hidden lg:flex flex-col w-64 min-h-screen sticky top-0 border-r"
         style={{
-          background: 'rgba(251, 253, 255, 0.88)',
+          background: 'rgba(251, 253, 255, 0.95)',
           borderColor: 'rgba(164, 181, 205, 0.38)',
         }}
       >
-        <div className="flex flex-col h-full py-6">
-          {/* Navigation Group */}
-          <div className="px-4 mb-4">
-            <p className="text-[10px] font-bold text-surface-500 uppercase tracking-[0.22em] px-3 mb-3">
-              Main Menu
-            </p>
-            <nav className="space-y-1">
-              {NAV_ITEMS.map(item => {
-                const isActive = activePage === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      onNavigate(item.id);
-                      onClose();
-                    }}
-                    className={`
-                      w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium
-                      transition-all duration-300 group relative overflow-hidden
-                      ${isActive
-                        ? 'bg-primary-500/10 text-primary-700 border border-primary-400/20'
-                        : 'text-surface-300 hover:text-surface-100 hover:bg-primary-500/6 border border-transparent'
-                      }
-                    `}
-                  >
-                    {/* Active Indicator Line */}
-                    {isActive && (
-                      <div className="absolute left-0 top-2.5 bottom-2.5 w-[3px] bg-gradient-to-b from-primary-500 to-primary-400 rounded-full" />
-                    )}
+        {/* Branding */}
+        <div className="px-6 pt-7 pb-6 border-b" style={{ borderColor: 'rgba(164, 181, 205, 0.3)' }}>
+          <h1 className="text-xl font-black text-surface-100 leading-snug tracking-tight">
+            Tugas Literatur<br />Review
+          </h1>
+          <span className="text-[9px] font-bold text-surface-500 uppercase tracking-[0.22em] mt-1.5 block">
+            Monitoring Studio
+          </span>
+        </div>
 
-                    <span className={`transition-colors duration-300 ${isActive ? 'text-primary-600' : 'text-surface-400 group-hover:text-surface-200'}`}>
-                      {item.icon}
-                    </span>
-                    <span className="tracking-wide">{item.label}</span>
-                    
-                    {isActive && (
-                      <div className="ml-auto">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary-500 shadow-[0_0_6px_rgba(47,143,255,0.6)]" />
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
+        {/* Navigation */}
+        <nav className="flex-1 px-4 py-5 space-y-1">
+          {NAV_ITEMS.map(item => {
+            const isActive = activePage === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onNavigate(item.id)}
+                className={`
+                  w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium
+                  transition-all duration-200 group relative
+                  ${isActive
+                    ? 'bg-primary-500/10 text-primary-700'
+                    : 'text-surface-300 hover:text-surface-100 hover:bg-surface-800/40'
+                  }
+                `}
+              >
+                <span className={`transition-colors ${isActive ? 'text-primary-600' : 'text-surface-400 group-hover:text-surface-200'}`}>
+                  {item.icon}
+                </span>
+                <span className="tracking-wide">{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
 
-          {/* Spacer */}
-          <div className="flex-1" />
-
-          {/* Bottom Branding / Info */}
-          <div className="px-5">
-            <div className="p-4 rounded-2xl border"
-              style={{
-                background: 'linear-gradient(145deg, rgba(246, 248, 252, 0.9), rgba(237, 242, 248, 0.7))',
-                borderColor: 'rgba(164, 181, 205, 0.35)',
-              }}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(14,168,155,0.6)] animate-pulse" />
-                <span className="text-[10px] font-bold text-surface-500 uppercase tracking-widest">v1.0.4</span>
-              </div>
-              <p className="text-[11px] font-medium text-surface-400 leading-relaxed">
-                Platform Monitoring Tugas Mahasiswa <span className="text-primary-600 font-bold">Metlit</span>
-              </p>
+        {/* Administrator section */}
+        <div className="px-4 pb-6 pt-4 border-t" style={{ borderColor: 'rgba(164, 181, 205, 0.3)' }}>
+          <div className="flex items-center gap-3 px-3 py-3 rounded-xl bg-surface-900/40">
+            <div className="w-8 h-8 rounded-full bg-surface-600/50 flex items-center justify-center text-[11px] font-black text-surface-300 shrink-0">
+              AD
             </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-surface-200 truncate">Administrator</p>
+              <p className="text-[10px] text-surface-500 truncate">Main Account</p>
+            </div>
+            {isAdminAuth && (
+              <button
+                onClick={onLogout}
+                title="Keluar"
+                className="p-1.5 rounded-lg text-surface-400 hover:text-danger-500 hover:bg-danger-500/10 transition-all"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </aside>

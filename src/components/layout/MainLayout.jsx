@@ -1,34 +1,27 @@
 /**
- * MainLayout — Wraps Navbar + Sidebar + Content + BottomNav (mobile)
+ * MainLayout — Wraps Sidebar + Content + BottomNav (mobile)
  */
 
-import { useState } from 'react';
-import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import BottomNav from './BottomNav';
 
-export default function MainLayout({ activePage, onNavigate, children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
+export default function MainLayout({ activePage, onNavigate, children, isAdminAuth, onAdminLogout }) {
   return (
-    <div className="min-h-screen bg-surface-950">
-      <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+    <div className="min-h-screen bg-surface-950 flex">
+      {/* Desktop sidebar */}
+      <Sidebar
+        activePage={activePage}
+        onNavigate={onNavigate}
+        isAdminAuth={isAdminAuth}
+        onLogout={onAdminLogout}
+      />
 
-      <div className="flex relative">
-        <Sidebar
-          activePage={activePage}
-          onNavigate={onNavigate}
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-        />
-
-        {/* Main content area — extra bottom padding on mobile for BottomNav */}
-        <main className="flex-1 min-h-[calc(100vh-4rem)] p-4 sm:p-5 lg:p-7 overflow-x-hidden pb-24 lg:pb-7">
-          <div className="max-w-[1500px] mx-auto animate-fade-in">
-            {children}
-          </div>
-        </main>
-      </div>
+      {/* Main content area — extra bottom padding on mobile for BottomNav */}
+      <main className="flex-1 min-h-screen p-5 lg:p-7 overflow-x-hidden pb-24 lg:pb-7">
+        <div className="max-w-[1500px] mx-auto animate-fade-in">
+          {children}
+        </div>
+      </main>
 
       {/* Mobile bottom navigation */}
       <BottomNav activePage={activePage} onNavigate={onNavigate} />

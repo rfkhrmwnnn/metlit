@@ -75,7 +75,12 @@ export default function App() {
   };
 
   return (
-    <MainLayout activePage={activePage} onNavigate={setActivePage}>
+    <MainLayout
+      activePage={activePage}
+      onNavigate={setActivePage}
+      isAdminAuth={isAdminAuth}
+      onAdminLogout={handleAdminLogout}
+    >
       {renderPage()}
     </MainLayout>
   );

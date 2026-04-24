@@ -69,7 +69,7 @@ export default function Students({ students, onUpdateTask, onDeleteStudent, onAd
           <h2 className="text-2xl sm:text-3xl font-black text-surface-100 tracking-tight">
             Data <span className="text-primary-gradient">Mahasiswa</span>
           </h2>
-          <p className="text-[11px] font-bold text-surface-500 mt-1 uppercase tracking-[0.18em]">Monitoring pengumpulan tugas P1-P16 + Final</p>
+          <p className="text-sm text-surface-500 mt-1">Monitoring pengumpulan tugas metodelogi penelitian.</p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           <button

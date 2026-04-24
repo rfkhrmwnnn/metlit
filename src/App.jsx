@@ -14,7 +14,7 @@ import { useStudents } from './hooks/useStudents';
 export default function App() {
   const [activePage, setActivePage] = useState('dashboard');
   const [isAdminAuth, setIsAdminAuth] = useState(() => {
-    return sessionStorage.getItem('admin_authenticated') === 'true';
+    return localStorage.getItem('admin_authenticated') === 'true';
   });
 
   // Scroll to top on page change
@@ -36,7 +36,7 @@ export default function App() {
   }, []);
 
   const handleAdminLogout = useCallback(() => {
-    sessionStorage.removeItem('admin_authenticated');
+    localStorage.removeItem('admin_authenticated');
     setIsAdminAuth(false);
     setActivePage('dashboard');
   }, []);

@@ -23,7 +23,7 @@ export default function LoginForm({ onLoginSuccess }) {
     // Simulate brief loading for UX
     setTimeout(() => {
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-        sessionStorage.setItem('admin_authenticated', 'true');
+        localStorage.setItem('admin_authenticated', 'true');
         onLoginSuccess();
       } else {
         setError('Username atau password salah!');

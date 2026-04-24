@@ -10,10 +10,13 @@ import { getClusterLabel } from '../utils/clustering';
 import Badge from '../components/common/Badge';
 
 export default function Dashboard({ students }) {
-  // Sort students by progress (ascending — worst first)
+  // Sort students by progress (ascending — worst first for at-risk)
   const sortedByProgress = [...students]
     .map(s => ({ ...s, progress: calculateProgress(s), average: calculateAverage(s) }))
     .sort((a, b) => a.progress - b.progress);
+
+  // Descending order for "all students" progress list (best first)
+  const sortedByProgressDesc = [...sortedByProgress].sort((a, b) => b.progress - a.progress);
 
   // At-risk students (< 50% progress)
   const atRiskStudents = sortedByProgress.filter(s => s.progress < 50);
@@ -95,7 +98,7 @@ export default function Dashboard({ students }) {
             <h3 className="text-sm font-semibold text-surface-200">Progress Semua Mahasiswa</h3>
           </div>
           <div className="space-y-2.5 max-h-[300px] overflow-y-auto pr-1">
-            {sortedByProgress.slice().reverse().map(student => (
+            {sortedByProgressDesc.map(student => (
               <div key={student.id} className="flex items-center gap-3">
                 <span className="text-xs text-surface-400 w-20 truncate shrink-0">{student.name}</span>
                 <div className="flex-1">

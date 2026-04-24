@@ -55,7 +55,7 @@ export default function Dashboard({ students }) {
         <h2 className="text-3xl font-black text-surface-100 tracking-tight">
           Data <span className="text-primary-gradient">Mahasiswa</span>
         </h2>
-        <p className="text-sm text-surface-500 mt-1">Status rekapitulasi tugas metodelogi penelitian.</p>
+        <p className="text-sm text-surface-500 mt-1">Status rekapitulasi tugas metodologi penelitian.</p>
       </div>
 
       {/* Stat Cards */}

@@ -36,7 +36,7 @@ export default function Navbar({ onToggleSidebar }) {
           </div>
           <div>
             <h1 className="text-base font-extrabold tracking-tight text-surface-100 leading-none">
-              Tugas <span className="text-primary-gradient">Metlit</span>
+              Tugas <span className="text-primary-gradient">Metopen</span>
             </h1>
             <span className="text-[9px] font-bold text-surface-500 uppercase tracking-[0.2em] mt-0.5 block">Monitoring Studio</span>
           </div>
